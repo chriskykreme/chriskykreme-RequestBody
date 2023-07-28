@@ -21,9 +21,13 @@ public class JavalinSingleton {
          * Note: Please refer to the "RequestBody.MD" file for more assistance.
          */
         app.post("/echo", ctx -> {
+            String jsonString=ctx.body();
+
+            //utilize jackson to convert the json string to a user object
+            Song song=om.readValue(jsonString,Song.class);
             
             //implement logic here
-                
+            ctx.json(song);
         });
 
         /**
@@ -34,9 +38,18 @@ public class JavalinSingleton {
          * Note: Please refer to the "RequestBody.MD" file for more assistance.
          */
         app.post("/changeartisttobeatles", ctx -> {
+        
+            //retrieve the json string from the request body
+            String jsonString=ctx.body();
 
-            //implement logic here
-               
+            //convert the json string to a Java object
+            Song song=om.readValue(jsonString,Song.class);
+
+            //change the artist name
+            song.setArtistName("Beatles");
+
+            //generate an HTTP response with the song object in the response body as a JSON.
+            ctx.json(song);
         });
 
 
