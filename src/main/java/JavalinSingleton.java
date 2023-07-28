@@ -39,16 +39,16 @@ public class JavalinSingleton {
          */
         app.post("/changeartisttobeatles", ctx -> {
         
-            //retrieve the json string from the request body
+            // retrieve the json string from the request body
             String jsonString=ctx.body();
 
-            //convert the json string to a Java object
+            // convert the json string to a Java object
             Song song=om.readValue(jsonString,Song.class);
 
-            //change the artist name
+            // change the artist name
             song.setArtistName("Beatles");
 
-            //generate an HTTP response with the song object in the response body as a JSON.
+            // generate an HTTP response with the song object in the response body as a JSON.
             ctx.json(song);
         });
 
